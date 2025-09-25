@@ -48,7 +48,7 @@ export default function CustomSelect({
           height="16"
           className={`${styles.arrow} ${isOpen ? styles.open : ""}`}
         >
-          <use xlinkHref="/src/assets/sprite.svg#icon-chevron-down"></use>
+          <use xlinkHref="/assets/sprite.svg#icon-chevron-down"></use>
         </svg>
       </div>
 

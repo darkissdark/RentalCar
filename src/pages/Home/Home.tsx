@@ -8,34 +8,34 @@ export function Home() {
         <picture>
           <source
             media="(min-width: 1024px)"
-            srcSet="/src/assets/home/hero-desktop.webp 1x, /src/assets/home/hero-desktop@2x.webp 2x"
+            srcSet="/assets/home/hero-desktop.webp 1x, /assets/home/hero-desktop@2x.webp 2x"
             type="image/webp"
           />
           <source
             media="(min-width: 1024px)"
-            srcSet="/src/assets/home/hero-desktop.jpg 1x, /src/assets/home/hero-desktop@2x.jpg 2x"
+            srcSet="/assets/home/hero-desktop.jpg 1x, /assets/home/hero-desktop@2x.jpg 2x"
             type="image/jpeg"
           />
           <source
             media="(min-width: 768px)"
-            srcSet="/src/assets/home/hero-tablet.webp 1x, /src/assets/home/hero-tablet@2x.webp 2x"
+            srcSet="/assets/home/hero-tablet.webp 1x, /assets/home/hero-tablet@2x.webp 2x"
             type="image/webp"
           />
           <source
             media="(min-width: 768px)"
-            srcSet="/src/assets/home/hero-tablet.jpg 1x, /src/assets/home/hero-tablet@2x.jpg 2x"
+            srcSet="/assets/home/hero-tablet.jpg 1x, /assets/home/hero-tablet@2x.jpg 2x"
             type="image/jpeg"
           />
           <source
-            srcSet="/src/assets/home/hero-mobile.webp 1x, /src/assets/home/hero-mobile@2x.webp 2x"
+            srcSet="/assets/home/hero-mobile.webp 1x, /assets/home/hero-mobile@2x.webp 2x"
             type="image/webp"
           />
           <source
-            srcSet="/src/assets/home/hero-mobile.jpg 1x, /src/assets/home/hero-mobile@2x.jpg 2x"
+            srcSet="/assets/home/hero-mobile.jpg 1x, /assets/home/hero-mobile@2x.jpg 2x"
             type="image/jpeg"
           />
           <img
-            src="/src/assets/home/hero-mobile.jpg"
+            src="/assets/home/hero-mobile.jpg"
             alt="RentalСar"
             className={styles.image}
           />
