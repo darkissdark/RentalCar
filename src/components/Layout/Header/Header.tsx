@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import { Container } from "../../ui/Container/Container";
+import Container from "../../ui/Container/Container";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 

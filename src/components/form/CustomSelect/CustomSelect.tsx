@@ -5,6 +5,8 @@ interface CustomSelectProps {
   options: string[];
   placeholder?: string;
   textBeforeValue?: string;
+  isError?: boolean;
+  className?: string;
   onChange?: (value: string) => void;
 }
 
@@ -12,6 +14,8 @@ export default function CustomSelect({
   options,
   placeholder = "Choose a option",
   textBeforeValue,
+  className = "",
+  isError,
   onChange,
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +35,7 @@ export default function CustomSelect({
 
   return (
     <div
-      className={styles.wrapper}
+      className={`${styles.wrapper} ${className}`}
       tabIndex={0}
       onBlur={handleClose}
       aria-haspopup="listbox"
@@ -54,6 +58,7 @@ export default function CustomSelect({
 
       {isOpen && (
         <div className={styles.options}>
+          {isError && <p>Failed to load data. Please try again later.</p>}
           <ul className={styles.scrollBar} role="listbox">
             {options.map((option) => (
               <li

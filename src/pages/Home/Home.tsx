@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import { LinkButton } from "../../components/ui/LinkButton/LinkButton";
+import LinkButton from "../../components/ui/LinkButton/LinkButton";
 
 export function Home() {
   return (

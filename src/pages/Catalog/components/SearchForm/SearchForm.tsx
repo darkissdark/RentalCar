@@ -4,7 +4,7 @@ import { fetchBrands } from "../../../../services/CarService";
 import style from "./SearchForm.module.css";
 import { generatePriceOptions } from "../../../../utils/options";
 import RangeInput from "../../../../components/form/RangeInput/RangeInput";
-import { Button } from "../../../../components/ui/Button/Button";
+import Button from "../../../../components/ui/Button/Button";
 
 interface SearchFormProps {
   onSearch: (params: {
@@ -17,6 +17,7 @@ interface SearchFormProps {
 
 export function SearchForm({ onSearch }: SearchFormProps) {
   const [brands, setBrands] = useState<string[]>([]);
+  const [isBrandsError, setIsBrandsError] = useState<boolean>(false);
   const [brand, setBrand] = useState<string | undefined>();
   const [rentalPrice, setRentalPrice] = useState<string | undefined>();
   const [minMileage, setMinMileage] = useState<string | undefined>();
@@ -25,9 +26,11 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   useEffect(() => {
     const getBrands = async () => {
       try {
+        setIsBrandsError(false);
         const response = await fetchBrands();
         setBrands(response);
       } catch (error) {
+        setIsBrandsError(true);
         console.error("Failed to fetch brands:", error);
       }
     };
@@ -50,6 +53,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         <div className={style.label}>Car brand</div>
         <CustomSelect
           options={brands}
+          isError={isBrandsError}
           placeholder="Choose a brand"
           onChange={(val) => setBrand(val)}
         />
@@ -58,9 +62,10 @@ export function SearchForm({ onSearch }: SearchFormProps) {
       <div className={`${style.item} ${style.price}`}>
         <div className={style.label}>Price/ 1 hour</div>
         <CustomSelect
-          options={generatePriceOptions(20, 10)}
+          options={generatePriceOptions(15, 10, 30)}
           placeholder="Choose a price"
           textBeforeValue="To $"
+          className={style.priceSelect}
           onChange={(val) => setRentalPrice(val)}
         />
       </div>

@@ -9,3 +9,5 @@ interface ContainerProps {
 export const Container = ({ children, className = "" }: ContainerProps) => {
   return <div className={`${styles.container} ${className}`}>{children}</div>;
 };
+
+export default Container;

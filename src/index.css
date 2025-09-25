@@ -31,6 +31,7 @@
 
   --card-text-color: var(--color-secondary-text);
   --card-model-secondary-color: var(--color-brand);
+  --card-chips-separator-color: #dadde1;
 }
 
 * {

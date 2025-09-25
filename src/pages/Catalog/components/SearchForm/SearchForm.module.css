@@ -11,7 +11,7 @@
   @mixin laptop {
     margin: 84px auto 56px;
     flex-wrap: nowrap;
-    width: auto;
+    width: 924px;
   }
 }
 
@@ -47,4 +47,8 @@
   .mileage {
     width: 320px;
   }
+}
+
+.priceSelect {
+  --options-max-height: 160px;
 }

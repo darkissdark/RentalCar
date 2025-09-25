@@ -1,82 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import SearchForm from "./components/SearchForm/SearchForm";
-import { Container } from "../../components/ui/Container/Container";
+import Container from "../../components/ui/Container/Container";
 import style from "./Catalog.module.css";
 import { CarsList } from "../Catalog/components/CarsList/CarsList";
-import { fetchCars } from "../../services/CarService";
-import type { Car, FetchCarsParams } from "../../types/car";
-import { Button } from "../../components/ui/Button/Button";
+import Button from "../../components/ui/Button/Button";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { fetchCarsAsync, resetCars } from "../../store/slices/carsSlice";
+import { setFilters } from "../../store/slices/filtersSlice";
+import type { FetchCarsParams } from "../../types/car";
 
 export function Catalog() {
-  const [cars, setCars] = useState<Car[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [error, isError] = useState(false);
-  const [empty, isEmpty] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [currentSearchParams, setCurrentSearchParams] =
-    useState<FetchCarsParams>({});
-
-  const loadCars = async (
-    params?: FetchCarsParams,
-    page: number = 1,
-    append: boolean = false
-  ) => {
-    try {
-      if (append) {
-        setLoadingMore(true);
-      } else {
-        setLoading(true);
-        isEmpty(false);
-        isError(false);
-      }
-
-      const fetchParams = { ...params, page };
-      const response = await fetchCars(fetchParams);
-
-      if (response.totalCars === 0 && page === 1) {
-        isEmpty(true);
-        setCars([]);
-      } else {
-        if (append) {
-          setCars((prevCars) => [...prevCars, ...response.cars]);
-        } else {
-          setCars(response.cars);
-        }
-      }
-
-      setCurrentPage(response.page);
-      setTotalPages(response.totalPages);
-    } catch (error) {
-      isError(true);
-      console.error("Failed to fetch cars:", error);
-    } finally {
-      setLoading(false);
-      setLoadingMore(false);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const { cars, loading, loadingMore, error, currentPage, hasMorePages } =
+    useAppSelector((state) => state.cars);
+  const filters = useAppSelector((state) => state.filters);
 
   useEffect(() => {
-    loadCars();
-  }, []);
+    dispatch(fetchCarsAsync({ params: {}, page: 1, append: false }));
+  }, [dispatch]);
 
   const handleSearch = (params: FetchCarsParams) => {
-    setCurrentSearchParams(params);
-    setCurrentPage(1);
-    loadCars(params, 1, false);
+    dispatch(setFilters(params));
+    dispatch(resetCars());
+    dispatch(fetchCarsAsync({ params, page: 1, append: false }));
   };
 
   const handleLoadMore = () => {
     const nextPage = +currentPage + 1;
-    loadCars(currentSearchParams, nextPage, true);
-    showNoMoreCars =
-      !loading && !empty && !error && !hasMorePages && cars.length > 0;
+    dispatch(fetchCarsAsync({ params: filters, page: nextPage, append: true }));
   };
 
-  const hasMorePages = currentPage < totalPages;
-  const showLoadMoreButton = !loading && !empty && !error && hasMorePages;
-  let showNoMoreCars = false;
+  const showLoadMoreButton =
+    !loading && !loadingMore && hasMorePages && cars.length > 0;
+  const showNoMoreCars =
+    !loading && !loadingMore && !hasMorePages && cars.length > 0;
 
   return (
     <Container>
@@ -91,7 +48,9 @@ export function Catalog() {
         </p>
       )}
 
-      {empty && <p className={style.center}>No cars found.</p>}
+      {!loading && cars.length === 0 && !error && (
+        <p className={style.center}>No cars found.</p>
+      )}
 
       {loading ? (
         <p className={style.center}>Loading cars...</p>

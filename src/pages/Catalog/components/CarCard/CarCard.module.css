@@ -55,7 +55,6 @@
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  padding-right: 11px;
   margin-bottom: 8px;
 }
 
@@ -63,7 +62,18 @@
   font-size: 12px;
   line-height: 16px;
   color: var(--card-text-color);
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+}
+
+.chipsItem {
+  &:after {
+    content: "";
+    margin-inline: 6px;
+    border-right: 1px solid var(--card-chips-separator-color);
+  }
 }
 
 .button {
@@ -73,6 +83,25 @@
   right: 0;
 }
 
-.chipsLine {
+.capitalize {
+  text-transform: lowercase;
   display: inline-block;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.favoriteButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 16px;
+  box-sizing: content-box;
+  transition: transform 250ms ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }

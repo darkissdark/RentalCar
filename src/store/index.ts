@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import authReducer from './slices/authSlice';
-// import loadingReducer from './slices/loadingSlice';
+import carsReducer from './slices/carsSlice';
+import filtersReducer from './slices/filtersSlice';
+import favoritesReducer from './slices/favoritesSlice';
 
 const store = configureStore({
   reducer: {
-    // auth: authReducer,
-    // loading: loadingReducer,
+    cars: carsReducer,
+    filters: filtersReducer,
+    favorites: favoritesReducer,
   },
 });
 

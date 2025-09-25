@@ -1,5 +1,4 @@
 export type NumberSerapators = "," | " ";
-export type AddressSerapators = "," | "|";
 
 function parseAddress(address: string): { city: string; country: string } {
   const parts = address.split(",").map((p) => p.trim());
@@ -16,10 +15,7 @@ export function formatThousandsSeparator(
   return value.toLocaleString("en-US").replace(/,/g, separator);
 }
 
-export function formatCarLocation(
-  address: string,
-  separator: AddressSerapators = ","
-): string {
+export function formatCarLocation(address: string): string {
   const { city, country } = parseAddress(address);
-  return `${city}${separator !== "," ? " " : ""}${separator} ${country}`;
+  return `${city}, ${country}`;
 }

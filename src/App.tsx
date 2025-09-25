@@ -1,21 +1,27 @@
 import { Route } from "react-router-dom";
 import { BrowserRouter as Router, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import { Provider } from "react-redux";
+import { lazy } from "react";
+import store from "./store";
 import Layout from "./components/Layout/Layout";
-import Catalog from "./pages/Catalog/Catalog";
-import NotFound from "./pages/NotFound/NotFound";
+
+const Home = lazy(() => import("./pages/Home/Home"));
+const Catalog = lazy(() => import("./pages/Catalog/Catalog"));
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Router>
+    </Provider>
   );
 }
 

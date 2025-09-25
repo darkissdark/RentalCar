@@ -12,7 +12,7 @@ export const fetchBrands = async (): Promise<string[]> => {
   return response.data;
 };
 
-interface FetchCarsResponse {
+export interface FetchCarsResponse {
   cars: Car[];
   totalCars: number;
   page: number;

@@ -94,7 +94,9 @@ export default function RangeInput({
 
   return (
     <div className={styles.wrapper}>
-      <div className={`${styles.inputWrapper} ${isError ? styles.error : ""}`}>
+      <label
+        className={`${styles.inputWrapper} ${isError ? styles.error : ""}`}
+      >
         <span className={styles.label}>{fromLabel}</span>
         <input
           type="text"
@@ -106,9 +108,11 @@ export default function RangeInput({
           inputMode="numeric"
           autoComplete="off"
         />
-      </div>
+      </label>
 
-      <div className={`${styles.inputWrapper} ${isError ? styles.error : ""}`}>
+      <label
+        className={`${styles.inputWrapper} ${isError ? styles.error : ""}`}
+      >
         <span className={styles.label}>{toLabel}</span>
         <input
           type="text"
@@ -120,7 +124,7 @@ export default function RangeInput({
           inputMode="numeric"
           autoComplete="off"
         />
-      </div>
+      </label>
       {isError && <span className={styles.errorText}>{isError}</span>}
     </div>
   );

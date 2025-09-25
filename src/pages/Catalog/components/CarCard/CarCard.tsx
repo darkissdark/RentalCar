@@ -1,10 +1,8 @@
 import style from "./CarCard.module.css";
 import type { Car } from "../../../../types/car";
-import {
-  formatCarLocation,
-  formatThousandsSeparator,
-} from "../../../../utils/formatters";
-import { LinkButton } from "../../../../components/ui/LinkButton/LinkButton";
+import { formatThousandsSeparator } from "../../../../utils/formatters";
+import LinkButton from "../../../../components/ui/LinkButton/LinkButton";
+import FavoriteButton from "../../../../components/ui/FavoriteButton/FavoriteButton";
 
 interface CarCardProps {
   car: Car;
@@ -20,6 +18,7 @@ const CarCard = ({ car }: CarCardProps) => {
           className={style.image}
           loading="lazy"
         />
+        <FavoriteButton id={car.id} className={style.favoriteButton} />
       </div>
       <div className={style.titleWrap}>
         <h2 className={style.title}>
@@ -29,15 +28,17 @@ const CarCard = ({ car }: CarCardProps) => {
         <p className={style.title}>${car.rentalPrice}</p>
       </div>
       <p className={style.chips}>
-        {formatCarLocation(car.address, "|")}&nbsp;|&nbsp;
-        <span className={style.chipsLine}>
-          {car.rentalCompany}&nbsp;|&nbsp;
-        </span>
-        <span className={style.chipsLine}>
-          {car.type} | {formatThousandsSeparator(car.mileage)} km
+        <span className={style.chipsItem}>{car.address.split(",")[1]}</span>
+        <span className={style.chipsItem}>{car.address.split(",")[2]}</span>
+        <span className={style.chipsItem}>{car.rentalCompany}</span>
+        <span>
+          <span className={`${style.capitalize} ${style.chipsItem}`}>
+            {car.type}
+          </span>
+          {formatThousandsSeparator(car.mileage)} km
         </span>
       </p>
-      <LinkButton className={style.button} to={`/cars/${car.id}`}>
+      <LinkButton className={style.button} to={`/catalog/${car.id}`}>
         Read more
       </LinkButton>
     </section>
