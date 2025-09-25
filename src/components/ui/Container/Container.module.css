@@ -1,0 +1,11 @@
+@import "@/styles/mixins.css";
+
+.container {
+  max-width: 1440px;
+  padding-inline: 16px;
+  margin-inline: auto;
+
+  @mixin desktop {
+    padding-inline: 120px;
+  }
+}

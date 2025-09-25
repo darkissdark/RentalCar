@@ -1,0 +1,78 @@
+@import "@/styles/mixins.css";
+
+.card {
+  flex: 1 1 100%;
+  position: relative;
+  padding-bottom: 44px;
+  @mixin tablet {
+    flex: 1 1 calc(33.3% - 16px);
+    max-width: calc(33.3% - 16px);
+  }
+  @mixin laptop {
+    flex: 1 1 calc(25% - 24px);
+    max-width: calc(25% - 24px);
+  }
+}
+
+.imageWrap {
+  position: relative;
+  margin-bottom: 16px;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 14px;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(18, 20, 23, 0.5) 2.5%,
+      rgba(18, 20, 23, 0) 41.07%
+    );
+  }
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 276 / 268;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.modelColor {
+  color: var(--card-model-secondary-color);
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.titleWrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-right: 11px;
+  margin-bottom: 8px;
+}
+
+.chips {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--card-text-color);
+  margin-bottom: 28px;
+}
+
+.button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.chipsLine {
+  display: inline-block;
+}

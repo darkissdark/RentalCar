@@ -1,0 +1,24 @@
+.header {
+  background-color: var(--header-background-color);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 24px;
+}
+
+.active {
+  color: var(--link-hover-color);
+}
+
+.link {
+  font-weight: 500;
+}
+
+.navList {
+  display: flex;
+  gap: 32px;
+  line-height: 20px;
+}

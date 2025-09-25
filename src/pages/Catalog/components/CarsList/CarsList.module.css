@@ -1,0 +1,15 @@
+@import "@/styles/mixins.css";
+
+.wrapper {
+  display: inline-flex;
+  gap: 24px 0;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  @mixin tablet {
+    gap: 32px 24px;
+    margin-bottom: 80px;
+  }
+  @mixin laptop {
+    gap: 48px 32px;
+  }
+}

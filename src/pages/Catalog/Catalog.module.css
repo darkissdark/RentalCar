@@ -1,0 +1,14 @@
+@import "@/styles/mixins.css";
+
+.center {
+  text-align: center;
+}
+
+.loadMore {
+  max-width: 156px;
+  margin-bottom: 124px;
+}
+
+.pb {
+  padding-bottom: 124px;
+}

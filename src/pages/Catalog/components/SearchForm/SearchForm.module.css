@@ -1,0 +1,50 @@
+@import "@/styles/mixins.css";
+
+.searchForm {
+  display: inline-flex;
+  gap: 16px;
+  text-align: left;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-block: 16px;
+  width: 100%;
+  @mixin laptop {
+    margin: 84px auto 56px;
+    flex-wrap: nowrap;
+    width: auto;
+  }
+}
+
+.item {
+  width: 100%;
+  @mixin tablet {
+    width: calc(50% - 8px);
+  }
+}
+
+.label {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--form-text-color);
+  margin-bottom: 8px;
+}
+
+.button {
+  max-width: 156px;
+}
+.buttonWrapper {
+  margin-left: auto;
+  max-width: 156px;
+  width: 100%;
+}
+@mixin laptop {
+  .brand {
+    width: 204px;
+  }
+  .price {
+    width: 196px;
+  }
+  .mileage {
+    width: 320px;
+  }
+}

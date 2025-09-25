@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--form-element-background);
+  border-radius: 12px;
+  padding-inline: 24px;
+  font-weight: 500;
+  position: relative;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-block: 12px;
+  width: 100%;
+  &:first-child {
+    border-right: 1px solid var(--form-dark-border-color);
+  }
+  & + .inputWrapper {
+    padding-left: 24px;
+  }
+}
+
+.label {
+}
+
+.input {
+  width: 75px;
+  background: none;
+  border: 0;
+  &:focus {
+    outline: none;
+  }
+}
+.error .input,
+.error {
+  color: var(--color-error);
+}
+
+.errorText {
+  color: var(--color-error);
+  font-size: 12px;
+  margin-top: 4px;
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background: #fff;
+}
