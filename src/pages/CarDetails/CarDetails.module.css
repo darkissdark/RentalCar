@@ -8,9 +8,14 @@
 }
 
 .carWrapper {
-  padding-block: 84px;
+  padding-block: 20px;
   @mixin tablet {
     display: flex;
+    gap: 36px;
+    padding-block: 40px;
+  }
+  @mixin laptop {
+    padding-block: 84px;
   }
   @mixin desktop {
     gap: 72px;
@@ -18,6 +23,10 @@
 }
 
 .carLeftSide {
+  margin-bottom: 40px;
+  @mixin tablet {
+    margin-bottom: 0;
+  }
   @mixin desktop {
     min-width: 640px;
   }
@@ -33,4 +42,5 @@
 .carImage {
   aspect-ratio: 640 / 512;
   border-radius: 16px;
+  margin-bottom: 40px;
 }

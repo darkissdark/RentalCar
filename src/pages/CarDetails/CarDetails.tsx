@@ -10,6 +10,7 @@ import NotFound from "../NotFound/NotFound";
 import CarHeadingSection from "./components/CarHeadingSection/CarHeadingSection";
 import СarCharacteristicList from "./components/СarCharacteristicList/СarCharacteristicList";
 import { capitalizeFirstLetter } from "../../utils/formatters";
+import BookingForm from "./components/CarBookingForm/BookingForm";
 
 export const CarDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -84,6 +85,7 @@ export const CarDetails = () => {
           loading="eager"
           fetchPriority="high"
         />
+        <BookingForm carId={car.id} />
       </div>
       <div className={styles.carRightSide}>
         <CarHeadingSection car={car} />

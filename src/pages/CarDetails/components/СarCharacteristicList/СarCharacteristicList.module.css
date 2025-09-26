@@ -1,6 +1,14 @@
+@import "@/styles/mixins.css";
+
 .wrapper {
   &:not(:last-child) {
-    margin-bottom: 110px;
+    margin-bottom: 40px;
+    @mixin laptop {
+      margin-bottom: 68px;
+    }
+    @mixin desktop {
+      margin-bottom: 110px;
+    }
   }
 }
 

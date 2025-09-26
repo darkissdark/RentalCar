@@ -1,3 +1,5 @@
+@import "@/styles/mixins.css";
+
 .title {
   font-weight: 600;
   font-size: 24px;
@@ -10,6 +12,7 @@
   line-height: 20px;
   font-weight: 500;
   color: var(--color-secondary-text);
+  display: inline-block;
 }
 
 .titlePrimary {
@@ -41,5 +44,12 @@
 }
 
 .wrapper {
-  margin-bottom: 68px;
+  margin-bottom: 20px;
+  @mixin tablet {
+    margin-bottom: 40px;
+  }
+  @mixin laptop {
+    margin-bottom: 68px;
+  }
+  font-weight: 500;
 }

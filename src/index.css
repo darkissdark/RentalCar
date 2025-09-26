@@ -9,7 +9,12 @@
   --color-brand: #3470ff;
   --color-secondary-text: #8d929a;
   --color-error: #e74c3c;
+  --color-success: #155724;
+
   --hover-color: #0b44cd;
+
+  --background-error: #fff5f5;
+  --background-success: #d4edda;
 
   --primary-button-color: #fff;
   --primary-button-background: var(--color-brand);
