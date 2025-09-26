@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./BookingForm.module.css";
 import Button from "../../../../components/ui/Button/Button";
+import DatePicker from "../../../../components/form/DatePicker/DatePicker";
 
 interface BookingFormProps {
   carId: string;
@@ -151,18 +152,22 @@ export default function BookingForm({ carId }: BookingFormProps) {
         </div>
 
         <div className={styles.formGroup}>
-          <input
-            type="date"
-            name="bookingDate"
+          <DatePicker
             value={formData.bookingDate}
-            onChange={handleInputChange}
-            className={`${styles.formInput} ${
-              errors.bookingDate ? styles.inputError : ""
-            }`}
+            onChange={(date) => {
+              setFormData((prev) => ({ ...prev, bookingDate: date }));
+              if (errors.bookingDate) {
+                setErrors((prev) => ({ ...prev, bookingDate: undefined }));
+              }
+            }}
+            error={!!errors.bookingDate}
             disabled={isSubmitting}
+            placeholder="Booking date*"
           />
           {errors.bookingDate && (
-            <span className={styles.errorMessage}>{errors.bookingDate}</span>
+            <span id="date-error" className={styles.errorMessage} role="alert">
+              {errors.bookingDate}
+            </span>
           )}
         </div>
 

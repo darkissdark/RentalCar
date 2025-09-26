@@ -37,6 +37,7 @@
   flex-direction: column;
   gap: 4px;
 }
+
 .formInput,
 .formTextarea {
   border-radius: 12px;
@@ -46,23 +47,17 @@
   line-height: 20px;
   background: var(--form-element-background);
   color: var(--color-secondary-text);
-}
-
-.formInput:focus,
-.formTextarea:focus {
-  outline: none;
-}
-
-.formInput:disabled,
-.formTextarea:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.formInput::placeholder,
-.formTextarea::placeholder {
-  color: var(--color-secondary-text);
-  font-weight: 500;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  &::placeholder {
+    color: var(--color-secondary-text);
+    font-weight: 500;
+  }
 }
 
 .formTextarea {
@@ -79,7 +74,6 @@
 .errorMessage {
   font-size: 12px;
   color: var(--color-error);
-  margin-top: 4px;
 }
 
 .submitButton {
