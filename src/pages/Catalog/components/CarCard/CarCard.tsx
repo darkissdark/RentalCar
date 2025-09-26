@@ -6,9 +6,10 @@ import FavoriteButton from "../../../../components/ui/FavoriteButton/FavoriteBut
 
 interface CarCardProps {
   car: Car;
+  index: number;
 }
 
-const CarCard = ({ car }: CarCardProps) => {
+const CarCard = ({ car, index }: CarCardProps) => {
   return (
     <section className={styles.card}>
       <div className={styles.imageWrap}>
@@ -16,7 +17,8 @@ const CarCard = ({ car }: CarCardProps) => {
           src={car.img}
           alt={`${car.brand} ${car.model}`}
           className={styles.image}
-          loading="lazy"
+          loading={index < 1 ? "eager" : "lazy"}
+          fetchPriority={index < 1 ? "high" : "low"}
         />
         <FavoriteButton id={car.id} className={styles.favoriteButton} />
       </div>

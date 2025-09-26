@@ -9,8 +9,8 @@ interface CarsListProps {
 export function CarsList({ cars }: CarsListProps) {
   return (
     <div className={styles.wrapper}>
-      {cars.map((car) => (
-        <CarCard car={car} key={car.id} />
+      {cars.map((car, index) => (
+        <CarCard car={car} index={index} key={car.id} />
       ))}
     </div>
   );

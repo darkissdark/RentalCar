@@ -26,16 +26,12 @@
   background: var(--background-error);
 }
 
-:global(.flatpickr-innerContainer) {
-  /* font-family: Inter !important; */
-}
-
 :global(.flatpickr-innerContainer .flatpickr-day) {
   max-width: 36px;
   max-height: 32px;
   font-size: 14px;
   max-width: unset;
-  max-hright: unset;
+  max-height: unset;
   line-height: normal;
   display: flex;
   align-items: center;
