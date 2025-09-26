@@ -11,12 +11,15 @@ import CarHeadingSection from "./components/CarHeadingSection/CarHeadingSection"
 import СarCharacteristicList from "./components/СarCharacteristicList/СarCharacteristicList";
 import { capitalizeFirstLetter } from "../../utils/formatters";
 import BookingForm from "./components/CarBookingForm/BookingForm";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 export const CarDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [car, setCar] = useState<Car | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const loadCar = async () => {
@@ -77,16 +80,6 @@ export const CarDetails = () => {
 
   return (
     <Container className={styles.carWrapper}>
-      <div className={styles.carLeftSide}>
-        <img
-          src={car.img}
-          alt={`${car.brand} ${car.model}`}
-          className={styles.carImage}
-          loading="eager"
-          fetchPriority="high"
-        />
-        <BookingForm carId={car.id} />
-      </div>
       <div className={styles.carRightSide}>
         <CarHeadingSection car={car} />
         <СarCharacteristicList
@@ -108,6 +101,18 @@ export const CarDetails = () => {
           }))}
         />
       </div>
+      <div className={styles.carLeftSide}>
+        <img
+          src={car.img}
+          alt={`${car.brand} ${car.model}`}
+          className={styles.carImage}
+          loading="eager"
+          fetchPriority="high"
+        />
+        {!isMobile && <BookingForm carId={car.id} />}
+      </div>
+
+      {isMobile && <BookingForm carId={car.id} />}
     </Container>
   );
 };

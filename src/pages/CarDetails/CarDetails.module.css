@@ -9,9 +9,11 @@
 
 .carWrapper {
   padding-block: 20px;
+  display: flex;
+  gap: 36px;
+  flex-direction: column;
   @mixin tablet {
-    display: flex;
-    gap: 36px;
+    flex-direction: row;
     padding-block: 40px;
   }
   @mixin laptop {
@@ -23,10 +25,7 @@
 }
 
 .carLeftSide {
-  margin-bottom: 40px;
-  @mixin tablet {
-    margin-bottom: 0;
-  }
+  order: -1;
   @mixin laptop {
     min-width: 640px;
   }
@@ -42,5 +41,7 @@
 .carImage {
   aspect-ratio: 640 / 512;
   border-radius: 16px;
-  margin-bottom: 40px;
+  @mixin tablet {
+    margin-bottom: 40px;
+  }
 }
