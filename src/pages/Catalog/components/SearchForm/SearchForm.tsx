@@ -5,6 +5,12 @@ import styles from "./SearchForm.module.css";
 import { generatePriceOptions } from "../../../../utils/options";
 import RangeInput from "../../../../components/form/RangeInput/RangeInput";
 import Button from "../../../../components/ui/Button/Button";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import {
+  setBrand,
+  setRentalPrice,
+  setMileageRange,
+} from "../../../../store/slices/filtersSlice";
 
 interface SearchFormProps {
   onSearch: (params: {
@@ -16,12 +22,11 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
+  const dispatch = useAppDispatch();
+  const filters = useAppSelector((state) => state.filters);
+
   const [brands, setBrands] = useState<string[]>([]);
   const [isBrandsError, setIsBrandsError] = useState<boolean>(false);
-  const [brand, setBrand] = useState<string | undefined>();
-  const [rentalPrice, setRentalPrice] = useState<string | undefined>();
-  const [minMileage, setMinMileage] = useState<string | undefined>();
-  const [maxMileage, setMaxMileage] = useState<string | undefined>();
 
   useEffect(() => {
     const getBrands = async () => {
@@ -40,10 +45,10 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
   const handleSearch = () => {
     onSearch({
-      brand,
-      rentalPrice,
-      minMileage,
-      maxMileage,
+      brand: filters.brand,
+      rentalPrice: filters.rentalPrice,
+      minMileage: filters.minMileage,
+      maxMileage: filters.maxMileage,
     });
   };
 
@@ -55,7 +60,8 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           options={brands}
           isError={isBrandsError}
           placeholder="Choose a brand"
-          onChange={(val) => setBrand(val)}
+          value={filters.brand}
+          onChange={(val) => dispatch(setBrand(val))}
         />
       </div>
 
@@ -66,16 +72,27 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           placeholder="Choose a price"
           textBeforeValue="To $"
           className={styles.priceSelect}
-          onChange={(val) => setRentalPrice(val)}
+          value={filters.rentalPrice}
+          onChange={(val) => dispatch(setRentalPrice(val))}
         />
       </div>
 
       <div className={`${styles.item} ${styles.mileage}`}>
         <div className={styles.label}>Car mileage / km</div>
         <RangeInput
+          initialFrom={
+            filters.minMileage ? parseInt(filters.minMileage) : undefined
+          }
+          initialTo={
+            filters.maxMileage ? parseInt(filters.maxMileage) : undefined
+          }
           onChange={({ from, to }) => {
-            setMinMileage(from ? from.toString() : undefined);
-            setMaxMileage(to ? to.toString() : undefined);
+            dispatch(
+              setMileageRange({
+                min: from ? from.toString() : undefined,
+                max: to ? to.toString() : undefined,
+              })
+            );
           }}
         />
       </div>

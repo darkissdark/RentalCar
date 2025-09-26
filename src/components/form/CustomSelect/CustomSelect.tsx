@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CustomSelect.module.css";
 
 interface CustomSelectProps {
@@ -7,6 +7,7 @@ interface CustomSelectProps {
   textBeforeValue?: string;
   isError?: boolean;
   className?: string;
+  value?: string;
   onChange?: (value: string) => void;
 }
 
@@ -16,10 +17,17 @@ export default function CustomSelect({
   textBeforeValue,
   className = "",
   isError,
+  value,
   onChange,
 }: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(
+    value || null
+  );
+
+  useEffect(() => {
+    setSelectedOption(value || null);
+  }, [value]);
 
   const handleToggle = () => setIsOpen((prev) => !prev);
 
