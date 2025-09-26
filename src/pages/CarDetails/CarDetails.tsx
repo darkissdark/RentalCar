@@ -106,6 +106,8 @@ export const CarDetails = () => {
           src={car.img}
           alt={`${car.brand} ${car.model}`}
           className={styles.carImage}
+          width={1280}
+          height={1024}
           loading="eager"
           fetchPriority="high"
         />

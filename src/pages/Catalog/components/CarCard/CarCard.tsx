@@ -17,6 +17,8 @@ const CarCard = ({ car, index }: CarCardProps) => {
           src={car.img}
           alt={`${car.brand} ${car.model}`}
           className={styles.image}
+          width={1280}
+          height={1024}
           loading={index < 1 ? "eager" : "lazy"}
           fetchPriority={index < 1 ? "high" : "low"}
         />

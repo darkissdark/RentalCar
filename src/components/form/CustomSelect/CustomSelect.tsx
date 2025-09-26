@@ -38,8 +38,6 @@ export default function CustomSelect({
       className={`${styles.wrapper} ${className}`}
       tabIndex={0}
       onBlur={handleClose}
-      aria-haspopup="listbox"
-      aria-expanded={isOpen}
     >
       <div className={styles.select} onClick={handleToggle}>
         <span className={styles.value}>
@@ -64,7 +62,6 @@ export default function CustomSelect({
               <li
                 key={option}
                 role="option"
-                aria-selected={selectedOption === option}
                 className={`${styles.option} ${
                   selectedOption === option ? styles.selected : ""
                 }`}
