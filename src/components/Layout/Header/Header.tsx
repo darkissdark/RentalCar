@@ -24,6 +24,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink
+                end
                 className={({ isActive }) =>
                   isActive ? `${styles.active} ${styles.link}` : styles.link
                 }

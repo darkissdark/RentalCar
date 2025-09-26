@@ -32,6 +32,8 @@
   --card-text-color: var(--color-secondary-text);
   --card-model-secondary-color: var(--color-brand);
   --card-chips-separator-color: #dadde1;
+
+  --car-page-price-color: var(--color-brand);
 }
 
 * {
@@ -54,6 +56,10 @@ p {
 html,
 body {
   height: 100%;
+}
+
+#root {
+  min-height: 100%;
 }
 
 body {

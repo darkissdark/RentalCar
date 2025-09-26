@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import SearchForm from "./components/SearchForm/SearchForm";
 import Container from "../../components/ui/Container/Container";
-import style from "./Catalog.module.css";
+import styles from "./Catalog.module.css";
 import { CarsList } from "../Catalog/components/CarsList/CarsList";
 import Button from "../../components/ui/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -38,31 +38,31 @@ export function Catalog() {
   return (
     <Container>
       <h1 className="visually-hidden">Cars list</h1>
-      <div className={style.center}>
+      <div className={styles.center}>
         <SearchForm onSearch={handleSearch} />
       </div>
 
       {error && (
-        <p className={style.center}>
+        <p className={styles.center}>
           Failed to load cars. Please try again later.
         </p>
       )}
 
       {!loading && cars.length === 0 && !error && (
-        <p className={style.center}>No cars found.</p>
+        <p className={styles.center}>No cars found.</p>
       )}
 
       {loading ? (
-        <p className={style.center}>Loading cars...</p>
+        <p className={styles.center}>Loading cars...</p>
       ) : (
         <CarsList cars={cars} />
       )}
 
-      <div className={style.center}>
+      <div className={styles.center}>
         {showLoadMoreButton && (
           <Button
             variant="secondary"
-            className={style.loadMore}
+            className={styles.loadMore}
             onClick={handleLoadMore}
             disabled={loadingMore}
           >
@@ -71,7 +71,7 @@ export function Catalog() {
         )}
 
         {showNoMoreCars && (
-          <p className={`${style.center} ${style.pb}`}>
+          <p className={`${styles.center} ${styles.pb}`}>
             No more cars available.
           </p>
         )}

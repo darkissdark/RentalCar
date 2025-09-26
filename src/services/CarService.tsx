@@ -25,3 +25,8 @@ export const fetchCars = async (
   const response = await api.get<FetchCarsResponse>("cars", { params });
   return response.data;
 };
+
+export const fetchCarById = async (id: string): Promise<Car> => {
+  const response = await api.get<Car>(`cars/${id}`);
+  return response.data;
+};

@@ -1,4 +1,4 @@
-import style from "./CarCard.module.css";
+import styles from "./CarCard.module.css";
 import type { Car } from "../../../../types/car";
 import { formatThousandsSeparator } from "../../../../utils/formatters";
 import LinkButton from "../../../../components/ui/LinkButton/LinkButton";
@@ -10,35 +10,35 @@ interface CarCardProps {
 
 const CarCard = ({ car }: CarCardProps) => {
   return (
-    <section className={style.card}>
-      <div className={style.imageWrap}>
+    <section className={styles.card}>
+      <div className={styles.imageWrap}>
         <img
           src={car.img}
           alt={`${car.brand} ${car.model}`}
-          className={style.image}
+          className={styles.image}
           loading="lazy"
         />
-        <FavoriteButton id={car.id} className={style.favoriteButton} />
+        <FavoriteButton id={car.id} className={styles.favoriteButton} />
       </div>
-      <div className={style.titleWrap}>
-        <h2 className={style.title}>
-          {car.brand} <span className={style.modelColor}>{car.model}</span>,{" "}
+      <div className={styles.titleWrap}>
+        <h2 className={styles.title}>
+          {car.brand} <span className={styles.modelColor}>{car.model}</span>,{" "}
           {car.year}
         </h2>
-        <p className={style.title}>${car.rentalPrice}</p>
+        <p className={styles.title}>${car.rentalPrice}</p>
       </div>
-      <p className={style.chips}>
-        <span className={style.chipsItem}>{car.address.split(",")[1]}</span>
-        <span className={style.chipsItem}>{car.address.split(",")[2]}</span>
-        <span className={style.chipsItem}>{car.rentalCompany}</span>
+      <p className={styles.chips}>
+        <span className={styles.chipsItem}>{car.address.split(",")[1]}</span>
+        <span className={styles.chipsItem}>{car.address.split(",")[2]}</span>
+        <span className={styles.chipsItem}>{car.rentalCompany}</span>
         <span>
-          <span className={`${style.capitalize} ${style.chipsItem}`}>
+          <span className={`${styles.capitalize} ${styles.chipsItem}`}>
             {car.type}
           </span>
           {formatThousandsSeparator(car.mileage)} km
         </span>
       </p>
-      <LinkButton className={style.button} to={`/catalog/${car.id}`}>
+      <LinkButton className={styles.button} to={`/catalog/${car.id}`}>
         Read more
       </LinkButton>
     </section>

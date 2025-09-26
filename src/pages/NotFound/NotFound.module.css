@@ -36,7 +36,7 @@
 
 .description {
   font-size: 16px;
-  color: var(--color-text-secondary);
+  color: var(--color-secondary-text);
   margin: 0 0 32px 0;
   line-height: 1.5;
   @mixin tablet {
