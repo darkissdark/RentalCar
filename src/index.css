@@ -1,5 +1,10 @@
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+
 :root {
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -71,6 +76,7 @@ body {
   margin: 0;
   color: var(--color-main);
   font-size: 16px;
+  font-weight: 400;
   line-height: 20px;
 }
 
@@ -123,11 +129,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
   -webkit-appearance: none;
+  appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
+  appearance: textfield;
 }
 
 input {
