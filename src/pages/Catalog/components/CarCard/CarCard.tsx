@@ -1,7 +1,7 @@
 import styles from "./CarCard.module.css";
 import type { Car } from "../../../../types/car";
 import { formatThousandsSeparator } from "../../../../utils/formatters";
-import LinkButton from "../../../../components/ui/LinkButton/LinkButton";
+import Button from "../../../../components/ui/Button/Button";
 import FavoriteButton from "../../../../components/ui/FavoriteButton/FavoriteButton";
 
 interface CarCardProps {
@@ -42,9 +42,9 @@ const CarCard = ({ car, index }: CarCardProps) => {
           {formatThousandsSeparator(car.mileage)} km
         </span>
       </p>
-      <LinkButton className={styles.button} to={`/catalog/${car.id}`}>
+      <Button as="link" className={styles.button} to={`/catalog/${car.id}`}>
         Read more
-      </LinkButton>
+      </Button>
     </section>
   );
 };

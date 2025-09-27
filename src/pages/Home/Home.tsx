@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import LinkButton from "../../components/ui/LinkButton/LinkButton";
+import Button from "../../components/ui/Button/Button";
 
 export function Home() {
   return (
@@ -46,9 +46,9 @@ export function Home() {
         <h2 className={styles.subTitle}>
           Reliable and budget-friendly rentals for any journey
         </h2>
-        <LinkButton to="/catalog" className={styles.button}>
+        <Button as="link" to="/catalog" className={styles.button}>
           View Catalog
-        </LinkButton>
+        </Button>
       </div>
     </section>
   );
