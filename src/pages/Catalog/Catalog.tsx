@@ -17,8 +17,8 @@ export function Catalog() {
   const filters = useAppSelector((state) => state.filters);
 
   useEffect(() => {
-    dispatch(fetchCarsAsync({ params: filters, page: 1, append: false }));
-  }, [dispatch, filters]);
+    dispatch(fetchCarsAsync({ useStoredFilters: true }));
+  }, [dispatch]);
 
   const handleSearch = (params: FetchCarsParams) => {
     dispatch(setFilters(params));

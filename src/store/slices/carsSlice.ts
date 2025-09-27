@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchCars, type FetchCarsResponse } from "../../services/CarService";
 import type { Car, FetchCarsParams } from "../../types/car";
+import type { RootState } from "../index";
 
 interface CarsState {
   cars: Car[];
@@ -26,17 +27,43 @@ const initialState: CarsState = {
 
 export const fetchCarsAsync = createAsyncThunk<
   FetchCarsResponse,
-  { params?: FetchCarsParams; page?: number; append?: boolean },
-  { rejectValue: string }
->("cars/fetchCars", async ({ params = {}, page = 1 }, { rejectWithValue }) => {
-  try {
-    const fetchParams = { ...params, page };
-    const response = await fetchCars(fetchParams);
-    return response;
-  } catch {
-    return rejectWithValue("Failed to fetch cars");
+  {
+    params?: FetchCarsParams;
+    page?: number;
+    append?: boolean;
+    useStoredFilters?: boolean;
+  },
+  { rejectValue: string; getState: () => RootState }
+>(
+  "cars/fetchCars",
+  async (
+    { params = {}, page = 1, useStoredFilters = false },
+    { rejectWithValue, getState }
+  ) => {
+    try {
+      let finalParams = { ...params };
+
+      if (useStoredFilters) {
+        const state = getState() as RootState;
+        const filters = state.filters;
+
+        const hasActiveFilters = Object.values(filters).some(
+          (value) => value !== undefined && value !== null && value !== ""
+        );
+
+        if (hasActiveFilters) {
+          finalParams = { ...filters };
+        }
+      }
+
+      const fetchParams = { ...finalParams, page };
+      const response = await fetchCars(fetchParams);
+      return response;
+    } catch {
+      return rejectWithValue("Failed to fetch cars");
+    }
   }
-});
+);
 
 const carsSlice = createSlice({
   name: "cars",
