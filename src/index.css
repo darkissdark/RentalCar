@@ -4,7 +4,8 @@
 @import "@fontsource/manrope/700.css";
 
 :root {
-  font-family: "Manrope", "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Manrope", "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -99,6 +100,10 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 }
 
 ul,

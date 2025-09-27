@@ -13,6 +13,7 @@ import {
 } from "../../../../store/slices/filtersSlice";
 
 interface SearchFormProps {
+  loading: boolean;
   onSearch: (params: {
     brand?: string;
     rentalPrice?: string;
@@ -21,7 +22,7 @@ interface SearchFormProps {
   }) => void;
 }
 
-export function SearchForm({ onSearch }: SearchFormProps) {
+export function SearchForm({ loading, onSearch }: SearchFormProps) {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((state) => state.filters);
 
@@ -98,7 +99,11 @@ export function SearchForm({ onSearch }: SearchFormProps) {
       </div>
 
       <div className={styles.buttonWrapper}>
-        <Button className={styles.button} onClick={handleSearch}>
+        <Button
+          disabled={loading}
+          className={styles.button}
+          onClick={handleSearch}
+        >
           Search
         </Button>
       </div>

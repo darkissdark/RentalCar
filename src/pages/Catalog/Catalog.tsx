@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchCarsAsync, resetCars } from "../../store/slices/carsSlice";
 import { setFilters } from "../../store/slices/filtersSlice";
 import type { FetchCarsParams } from "../../types/car";
+import Loader from "../../components/ui/Loader/Loader";
 
 export function Catalog() {
   const dispatch = useAppDispatch();
@@ -16,8 +17,8 @@ export function Catalog() {
   const filters = useAppSelector((state) => state.filters);
 
   useEffect(() => {
-    dispatch(fetchCarsAsync({ params: {}, page: 1, append: false }));
-  }, [dispatch]);
+    dispatch(fetchCarsAsync({ params: filters, page: 1, append: false }));
+  }, [dispatch, filters]);
 
   const handleSearch = (params: FetchCarsParams) => {
     dispatch(setFilters(params));
@@ -30,8 +31,7 @@ export function Catalog() {
     dispatch(fetchCarsAsync({ params: filters, page: nextPage, append: true }));
   };
 
-  const showLoadMoreButton =
-    !loading && !loadingMore && hasMorePages && cars.length > 0;
+  const showLoadMoreButton = !loading && hasMorePages && cars.length > 0;
   const showNoMoreCars =
     !loading && !loadingMore && !hasMorePages && cars.length > 0;
 
@@ -39,7 +39,7 @@ export function Catalog() {
     <Container>
       <h1 className="visually-hidden">Cars list</h1>
       <div className={styles.center}>
-        <SearchForm onSearch={handleSearch} />
+        <SearchForm loading={loading} onSearch={handleSearch} />
       </div>
 
       {error && (
@@ -53,7 +53,7 @@ export function Catalog() {
       )}
 
       {loading ? (
-        <p className={styles.center}>Loading cars...</p>
+        <Loader className={styles.loader} />
       ) : (
         <CarsList cars={cars} />
       )}

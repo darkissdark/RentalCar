@@ -12,3 +12,7 @@
 .pb {
   padding-bottom: 124px;
 }
+
+.loader {
+  max-height: 30vh;
+}

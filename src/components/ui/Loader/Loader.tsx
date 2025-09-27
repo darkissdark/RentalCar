@@ -1,8 +1,11 @@
 import styles from "./Loader.module.css";
 
-export default function Loader() {
+interface LoaderProps {
+  className?: string;
+}
+export default function Loader({ className = "" }: LoaderProps) {
   return (
-    <div className={styles.loader}>
+    <div className={`${styles.loader} ${className}`}>
       <svg
         className={styles.car}
         width="102"
