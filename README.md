@@ -58,3 +58,9 @@ src/
 ## Deployment
 
 Deployed on Vercel: https://rental-car-beta-wine.vercel.app
+
+## Author
+
+Created by [darkissdark](https://github.com/darkissdark)
+
+**Portfolio**: https://darkissdark.github.io/
