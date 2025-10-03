@@ -29,9 +29,9 @@ export function Button(props: ButtonProps) {
   const classes = [styles[variant], className].filter(Boolean).join(" ");
 
   if ("as" in restProps && restProps.as === "link") {
-    const { ...linkProps } = restProps;
+    const { as, ...linkProps } = restProps;
     return (
-      <Link className={classes} {...linkProps}>
+      <Link data-link={as} className={classes} {...linkProps}>
         {children}
       </Link>
     );
